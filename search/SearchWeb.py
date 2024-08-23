@@ -63,4 +63,3 @@ class MultiSearch:
             )
 
         return results
-

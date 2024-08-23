@@ -1,9 +1,13 @@
 import os
 
-from llm.rag_pipeline import Chain
 import dotenv
+import fastapi
+from fastapi import FastAPI
+
+from llm.rag_pipeline import Chain, embed_test
 
 dotenv.load_dotenv()
+
 
 def main():
     model_id = 'microsoft/Phi-3-mini-128k-instruct'
@@ -15,9 +19,10 @@ def main():
     }
 
     rag_chain = Chain(model_id=model_id, api_key=api_key)
-
-    res = rag_chain.search_chain('look for biriyani')
+    res = rag_chain.prompt_chain('diet plan to workout')
     print(res)
+
+
 
 if __name__ == '__main__':
     main()

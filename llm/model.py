@@ -8,6 +8,8 @@ from transformers import (
     BitsAndBytesConfig
 )
 
+from langchain_huggingface import HuggingFacePipeline
+
 
 class LLMPipeline:
     def __init__(self, model_id: str, device: str = 'cuda'):
@@ -35,5 +37,5 @@ class LLMPipeline:
     def get_info(self):
         print(f'model_info: {self.model}')
 
-    def get_pipeline(self) -> pipeline:
-        return self.pipe
+    def get_pipeline(self) -> HuggingFacePipeline:
+        return HuggingFacePipeline(pipeline=self.pipe)
