@@ -1,4 +1,4 @@
 .*/__pycache__
-.*conversational_rag.ipynb
-.*qa_w_history.ipynb
+conversational_rag.ipynb
+qa_w_history.ipynb
 .env
