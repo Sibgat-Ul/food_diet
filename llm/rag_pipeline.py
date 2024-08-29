@@ -1,26 +1,18 @@
-import os
-import json
 import uuid
-import requests
-import weaviate
 import regex as re
-import weaviate.classes as wvc
-from weaviate.auth import AuthApiKey
 
-from llm.model import LLMPipeline
+from llm.chat_model import LLM
 from llm.PhiPrompt import PhiPrompt
 
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.vectorstores import InMemoryVectorStore
 from langchain_community.document_loaders import PyPDFLoader as PDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.runnables import (
-    RunnablePassthrough, RunnableParallel, RunnableLambda
+    RunnableLambda
 )
 
-from search.SearchWeb import TavilySearch, DDGSearch, MultiSearch
-
+from web_search.SearchClient import MultiSearch
 
 def embed_test():
     store = {}
@@ -56,9 +48,8 @@ class Chain:
     def __init__(self, model_id: str, api_key: dict, embedding_model_id: str = 'all-MiniLM-L6-v2', device: str = 'cuda'):
         self.model_id = model_id
         self.phi_prompt_builder = PhiPrompt()
-        self.pipe = LLMPipeline(model_id=model_id, device=device)
-        self.llm = self.pipe.get_pipeline()
-        self.search = MultiSearch([TavilySearch(api_key['tavily']), DDGSearch()])
+        self.llm= LLM(model_id=model_id, device=device).get_llm()
+        self.search = MultiSearch(api_key)
 
         # self.embedding = HuggingFaceEmbeddings(model_name=embedding_model_id, model_kwargs={'device': 'cuda'})
         # self.vector_store = InMemoryVectorStore(self.embedding)
@@ -141,5 +132,4 @@ recipe or use cookbooks according to the user's need. Your generated output shou
                  | (lambda x: (x.split("<|assistant|>")[-1]).strip())
                  )
 
-        res = chain.invoke({'prompt': prompt, "cookbook": cookbook})
-        return res
+        return chain.invoke({'prompt': prompt, "cookbook": cookbook})

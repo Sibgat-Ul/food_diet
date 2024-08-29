@@ -50,9 +50,14 @@ class DDGSearch:
             raise e
 
 
+
 class MultiSearch:
-    def __init__(self, clients: []):
-        self.clients = clients
+    def __init__(self, search_api_keys: dict):
+        self.search_api_keys = search_api_keys
+        self.clients = [
+            TavilySearch(search_api_keys['tavily']),
+            DDGSearch()
+        ]
 
     def search(self, query: str, max_results=2):
         results = []
