@@ -1,8 +1,8 @@
 import uuid
 import regex as re
 
-from llm.chat_model import LLM
-from llm.PhiPrompt import PhiPrompt
+from back_end.llm.chat_model import LLM
+from back_end.llm.PhiPrompt import PhiPrompt
 
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -12,7 +12,7 @@ from langchain_core.runnables import (
     RunnableLambda
 )
 
-from web_search.SearchClient import MultiSearch
+from back_end.web_search.SearchClient import MultiSearch
 
 def embed_test():
     store = {}

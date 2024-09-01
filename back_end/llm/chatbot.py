@@ -1,24 +1,17 @@
-import os, re
+import re
 
-from llm import embedding_model
-from llm.chat_model import LLM
-from llm.embedding_model import EmbeddingModel
+from back_end.llm.chat_model import LLM
+from back_end.llm.embedding_model import EmbeddingModel
 
-from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from langchain_core.runnables import RunnableLambda
 from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-from web_search.WebSearch import WebSearch
+from back_end.web_search.WebSearch import WebSearch
 
 from langchain_chroma import Chroma
-from langchain.memory import ChatMessageHistory
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.chat_message_histories import ChatMessageHistory
-
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
 
 import dotenv
 dotenv.load_dotenv()

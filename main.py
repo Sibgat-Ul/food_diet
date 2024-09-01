@@ -2,10 +2,9 @@ import os
 
 import dotenv
 import fastapi
-from fastapi import FastAPI
 
-from server.api_model import PromptInput
-from llm.rag_pipeline import Chain, embed_test
+from back_end.server.api_model import PromptInput
+from back_end.llm.rag_pipeline import Chain
 
 dotenv.load_dotenv()
 

@@ -1,7 +1,7 @@
 import os
 
 from langchain_core.prompts import ChatPromptTemplate
-from web_search.SearchClient import MultiSearch
+from back_end.web_search.SearchClient import MultiSearch
 
 import dotenv
 dotenv.load_dotenv()
