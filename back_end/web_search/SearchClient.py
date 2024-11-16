@@ -1,6 +1,5 @@
 import os
 
-from duckduckgo_search import DDGS
 from tavily import TavilyClient
 import dotenv
 
@@ -56,7 +55,7 @@ class MultiSearch:
         self.search_api_keys = search_api_keys
         self.clients = [
             TavilySearch(search_api_keys['tavily']),
-            DDGSearch()
+            # DDGSearch()
         ]
 
     def search(self, query: str, max_results=2):

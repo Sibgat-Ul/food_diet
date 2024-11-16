@@ -27,11 +27,14 @@ pip install -r 'requirements.txt'
 ```bash
 uvicorn main:app --reload --reload-exclude ./front_end/*
 ```
+uvicorn url: http://127.0.0.1:8000
 
 3. Start the streamlit server:
 ```bash
 streamlit run front_end/streamlit_ui.py
 ```
+
+
 
 ### Future work:
 

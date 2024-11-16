@@ -35,7 +35,7 @@ class LLM:
                     task='text-generation',
                     model=self.model,
                     tokenizer=self.tokenizer,
-                    max_new_tokens=256,
+                    max_new_tokens=1024,
                 )
             ),
             tokenizer=self.tokenizer,

@@ -4,7 +4,7 @@ import regex as re
 
 def generate_reply(prompt):
     try:
-        response = requests.post(url="http://127.0.0.1:8000/prompt", data=json.dumps({"input": prompt}))
+        response = requests.post(url="http://127.0.0.1:5000/prompt", data=json.dumps({"input": prompt}))
     except Exception as e:
         response = {
             'content': None,
